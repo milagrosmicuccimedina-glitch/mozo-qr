@@ -35,6 +35,7 @@ const MENU = {
   ],
 };
 
+const cart = new Map(); // nombre -> { qty, price }
 const peso = (n) => "$" + n.toLocaleString("es-AR");
 const tabs = document.querySelector(".menu__tabs");
 const list = document.querySelector(".menu__list");
@@ -47,9 +48,25 @@ function showCategory(name) {
     li.innerHTML = `
       <span class="menu__emoji" aria-hidden="true">${emoji}</span>
       <div><p class="menu__name"></p><p class="menu__desc"></p></div>
-      <span class="menu__price">${peso(price)}</span>`;
+      <div class="menu__right">
+        <span class="menu__price">${peso(price)}</span>
+        <span class="menu__count"></span>
+      </div>
+      <button type="button" class="menu__add">+</button>`;
     li.querySelector(".menu__name").textContent = title;
     li.querySelector(".menu__desc").textContent = desc;
+    const add = li.querySelector(".menu__add");
+    add.setAttribute("aria-label", `Agregar ${title}`);
+    const count = li.querySelector(".menu__count");
+    const paint = () => (count.textContent = cart.get(title)?.qty ? `En tu pedido: ${cart.get(title).qty}` : "");
+    add.addEventListener("click", () => {
+      const it = cart.get(title) || { qty: 0, price };
+      it.qty++;
+      cart.set(title, it);
+      paint();
+      renderCart();
+    });
+    paint();
     list.appendChild(li);
   }
 }
@@ -77,17 +94,27 @@ function updateCount() {
   staffCount.textContent = pending === 1 ? "1 aviso" : `${pending} avisos`;
 }
 
-function addAlert({ kind, title, meta, onDone }) {
+function addAlert({ kind, title, meta, items = [], onDone }) {
   staffList.querySelector(".staff__empty")?.remove();
   const li = document.createElement("li");
   li.className = `alert alert--${kind}`;
   const time = new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" });
   li.innerHTML = `
-    <span class="alert__icon" aria-hidden="true">${kind === "bill" ? "🧾" : "🔔"}</span>
+    <span class="alert__icon" aria-hidden="true">${{ bill: "🧾", order: "🍽️" }[kind] || "🔔"}</span>
     <div class="alert__body"><p class="alert__title"></p><p class="alert__meta"></p></div>
     <button type="button">Atendido</button>`;
   li.querySelector(".alert__title").textContent = title;
   li.querySelector(".alert__meta").textContent = `${meta} · ${time}`;
+  if (items.length) {
+    const ul = document.createElement("ul");
+    ul.className = "alert__items";
+    for (const t of items) {
+      const i = document.createElement("li");
+      i.textContent = t;
+      ul.appendChild(i);
+    }
+    li.querySelector(".alert__body").appendChild(ul);
+  }
   li.querySelector("button").addEventListener("click", () => {
     li.classList.add("alert--done");
     li.querySelector(".alert__meta").textContent += " · atendido ✓";
@@ -157,3 +184,40 @@ function beep() {
     // Sin audio: el aviso igual aparece en pantalla
   }
 }
+
+// ===== Demo: pedido desde la mesa =====
+const cartBar = document.querySelector(".cart");
+const cartQty = document.querySelector(".cart__qty");
+const cartTotal = document.querySelector(".cart__total");
+const cartSend = document.querySelector(".cart__send");
+
+function renderCart() {
+  let qty = 0;
+  let total = 0;
+  for (const it of cart.values()) {
+    qty += it.qty;
+    total += it.qty * it.price;
+  }
+  cartBar.hidden = qty === 0;
+  cartQty.textContent = qty === 1 ? "1 producto" : `${qty} productos`;
+  cartTotal.textContent = peso(total);
+}
+
+cartSend.addEventListener("click", () => {
+  const items = [...cart.entries()].map(([name, it]) => `${it.qty} × ${name}`);
+  const total = cartTotal.textContent;
+  addAlert({
+    kind: "order",
+    title: "Mesa 4 hizo un pedido",
+    meta: `Total ${total}`,
+    items,
+    onDone: () => {},
+  });
+  cart.clear();
+  renderCart();
+  showCategory(tabs.querySelector('[aria-selected="true"]').textContent);
+  status.textContent = "✓ ¡Pedido enviado! Ya lo están preparando.";
+  setTimeout(() => {
+    if (status.textContent.startsWith("✓ ¡Pedido")) status.textContent = "";
+  }, 4000);
+});
