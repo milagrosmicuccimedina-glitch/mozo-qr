@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mozo QR · Carta online, llamar al mozo y pedir la cuenta</title>
+  <meta name="description" content="Un QR en cada mesa: tus clientes ven la carta, llaman al mozo y piden la cuenta desde el celular. Sin descargar apps. Lo instalamos nosotros." />
+  <meta property="og:title" content="Mozo QR" />
+  <meta property="og:description" content="Carta online, llamar al mozo y pedir la cuenta con un QR en cada mesa." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#1c1714" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8743b'/%3E%3Cpath d='M9 9h5v5H9zM18 9h5v5h-5zM9 18h5v5H9zM18 18h2v2h-2zM21 21h2v2h-2z' fill='%231c1714'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top__in">
+      <a href="#" class="logo" aria-label="Mozo QR, inicio">
+        <span class="logo__mark" aria-hidden="true"></span>
+        Mozo<span>QR</span>
+      </a>
+      <nav class="nav" aria-label="Secciones">
+        <a href="#demo">Probalo</a>
+        <a href="#como">Cómo funciona</a>
+        <a href="#planes">Planes</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <a class="btn btn--small js-wa" href="#" data-msg="Hola! Quiero info sobre Mozo QR para mi local.">Quiero Mozo QR</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero__in">
+        <div class="hero__text">
+          <p class="eyebrow">Para restaurantes, bares y cafés</p>
+          <h1>Que tus clientes llamen al mozo <em>con un QR.</em></h1>
+          <p class="lead">Un código en cada mesa. Lo escanean con el celular y ven la carta, llaman al mozo o piden la cuenta. Al instante le llega el aviso al personal con el número de mesa. Sin bajar ninguna app.</p>
+          <div class="hero__cta">
+            <a class="btn js-wa" href="#" data-msg="Hola! Quiero info sobre Mozo QR para mi local.">Pedí una demo en tu local</a>
+            <a class="btn btn--ghost" href="#demo">Probalo acá ↓</a>
+          </div>
+          <ul class="checks">
+            <li>Lo instalamos nosotros</li>
+            <li>Cargamos tu carta</li>
+            <li>Te dejamos los QR impresos</li>
+          </ul>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="tent">
+            <div class="tent__card">
+              <p class="tent__brand">Mesa 4</p>
+              <div class="qr"></div>
+              <p class="tent__hint">Escaneá para ver la carta<br />y llamar al mozo</p>
+              <p class="tent__by">Mozo QR</p>
+            </div>
+          </div>
+          <div class="bubble bubble--a">🔔 Mesa 4 llama al mozo</div>
+          <div class="bubble bubble--b">🧾 Mesa 7 pide la cuenta · Mercado Pago</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMAS -->
+    <section class="pains">
+      <div class="wrap pains__grid">
+        <div><strong>“¡Mozo!”</strong><p>Clientes levantando la mano y esperando que alguien los vea.</p></div>
+        <div><strong>La cuenta que no llega</strong><p>La mesa ya terminó, quiere irse y no consigue que se la traigan.</p></div>
+        <div><strong>Cartas viejas</strong><p>Precios tachados y reimpresiones cada vez que algo aumenta.</p></div>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="section">
+      <div class="wrap">
+        <p class="eyebrow">Demo en vivo</p>
+        <h2>Probalo como si estuvieras en la mesa</h2>
+        <p class="sub">A la izquierda, lo que ve el cliente después de escanear el QR. A la derecha, lo que le llega al mozo. Tocá los botones.</p>
+
+        <div class="demo">
+          <!-- Teléfono del cliente -->
+          <div class="phone" role="region" aria-label="Pantalla del cliente">
+            <div class="phone__notch"></div>
+            <div class="phone__screen">
+              <div class="app__head">
+                <p class="app__resto">La Esquina · Bodegón</p>
+                <p class="app__table">Mesa 4</p>
+              </div>
+              <div class="app__actions">
+                <button class="act act--call" type="button" data-action="call">
+                  <span class="act__icon">🔔</span>Llamar al mozo
+                </button>
+                <button class="act act--bill" type="button" data-action="bill">
+                  <span class="act__icon">🧾</span>Pedir la cuenta
+                </button>
+              </div>
+              <div class="pay" hidden>
+                <p>¿Cómo vas a pagar?</p>
+                <div class="pay__opts">
+                  <button type="button" data-pay="Efectivo">Efectivo</button>
+                  <button type="button" data-pay="Tarjeta">Tarjeta</button>
+                  <button type="button" data-pay="Mercado Pago">Mercado Pago</button>
+                </div>
+              </div>
+              <div class="app__status" role="status" aria-live="polite"></div>
+              <div class="menu">
+                <div class="menu__tabs" role="tablist"></div>
+                <ul class="menu__list"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel del mozo -->
+          <div class="staff" role="region" aria-label="Panel del personal">
+            <div class="staff__head">
+              <p><span class="dot"></span> Panel del personal</p>
+              <span class="staff__count">0 avisos</span>
+            </div>
+            <ul class="staff__list">
+              <li class="staff__empty">Todo tranquilo. Cuando la mesa toque un botón, el aviso aparece acá y suena en el celular del mozo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section id="como" class="section section--alt">
+      <div class="wrap">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>En tu local en una semana</h2>
+        <ol class="steps">
+          <li><span>1</span><h3>Nos contás de tu local</h3><p>Cantidad de mesas, tu carta y cómo trabajan los mozos.</p></li>
+          <li><span>2</span><h3>Armamos todo</h3><p>Cargamos la carta con fotos y precios, y preparamos un QR único por mesa con tu logo.</p></li>
+          <li><span>3</span><h3>Capacitamos al equipo</h3><p>En 15 minutos el personal sabe recibir avisos y marcar mesas atendidas.</p></li>
+          <li><span>4</span><h3>¡A atender!</h3><p>Vos cambiás precios y platos cuando quieras desde el celular, y nosotros te acompañamos por WhatsApp.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FUNCIONES -->
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Todo lo que incluye</p>
+        <h2>Menos vueltas, mesas más contentas</h2>
+        <div class="feats">
+          <article><h3>📖 Carta online</h3><p>Con fotos, descripciones y precios siempre al día. Si un plato se termina, lo pausás en un toque.</p></article>
+          <article><h3>🔔 Llamar al mozo</h3><p>El aviso le llega al personal con el número de mesa. Nadie queda esperando con la mano levantada.</p></article>
+          <article><h3>🧾 Pedir la cuenta</h3><p>El cliente avisa que quiere pagar y cómo: efectivo, tarjeta o Mercado Pago.</p></article>
+          <article><h3>🍽️ Pedidos desde la mesa</h3><p>Opcional: el cliente arma su pedido y va directo a la pantalla de cocina o barra.</p></article>
+          <article><h3>📲 Sin apps</h3><p>Funciona con la cámara de cualquier celular. Tus clientes no instalan nada.</p></article>
+          <article><h3>📊 Estadísticas</h3><p>Qué se vende más, a qué hora se llena el local y cuánto tardan en atender cada aviso.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRUEBA SOCIAL -->
+    <section class="proof">
+      <div class="wrap proof__in">
+        <p class="proof__label">Ya funciona en Santa Rosa</p>
+        <p class="proof__names"><span>Blasón</span> Restaurante · Bar <i>·</i> <span>Prana</span> Café · Bar</p>
+        <p class="proof__sub">en el Paseo Marinelli</p>
+      </div>
+    </section>
+
+    <!-- PLANES -->
+    <section id="planes" class="section">
+      <div class="wrap">
+        <p class="eyebrow">Planes</p>
+        <h2>Elegí hasta dónde llegar</h2>
+        <p class="sub">Abono mensual. Sin permanencia: si no te sirve, lo das de baja cuando quieras.</p>
+        <div class="plans">
+          <article class="plan">
+            <h3>Carta</h3>
+            <p class="plan__for">Para dejar atrás la carta de papel</p>
+            <ul>
+              <li>Carta online con fotos</li>
+              <li>QR para cada mesa</li>
+              <li>Cambios de precios desde el celular</li>
+            </ul>
+            <a class="btn btn--ghost js-wa" href="#" data-msg="Hola! Me interesa el plan Carta de Mozo QR.">Consultar precio</a>
+          </article>
+          <article class="plan plan--hi">
+            <p class="plan__tag">El más elegido</p>
+            <h3>Mozo</h3>
+            <p class="plan__for">Para atender más rápido</p>
+            <ul>
+              <li>Todo lo del plan Carta</li>
+              <li>Llamar al mozo</li>
+              <li>Pedir la cuenta y forma de pago</li>
+              <li>Avisos en el celular del personal</li>
+            </ul>
+            <a class="btn js-wa" href="#" data-msg="Hola! Me interesa el plan Mozo de Mozo QR.">Consultar precio</a>
+          </article>
+          <article class="plan">
+            <h3>Completo</h3>
+            <p class="plan__for">Para locales con mucho movimiento</p>
+            <ul>
+              <li>Todo lo del plan Mozo</li>
+              <li>Pedidos desde la mesa</li>
+              <li>Pantalla de cocina y barra</li>
+              <li>Cobro con Mercado Pago</li>
+              <li>Estadísticas</li>
+            </ul>
+            <a class="btn btn--ghost js-wa" href="#" data-msg="Hola! Me interesa el plan Completo de Mozo QR.">Consultar precio</a>
+          </article>
+        </div>
+        <p class="plans__note">Incluye la instalación, la carga de tu carta y los QR impresos. Primer mes de prueba.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="preguntas" class="section section--alt">
+      <div class="wrap wrap--narrow">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Lo que nos suelen preguntar</h2>
+        <div class="faq">
+          <details><summary>¿Mis clientes tienen que descargar algo?</summary><p>No. Abren la cámara del celular, apuntan al QR y se abre la carta de tu local en el navegador.</p></details>
+          <details><summary>¿Cómo se entera el mozo?</summary><p>Le llega una notificación al celular (o a una tablet en la barra) con el número de mesa y qué necesita: mozo o cuenta.</p></details>
+          <details><summary>¿Alguien puede llamar al mozo sin estar en el local?</summary><p>Cada mesa tiene un código secreto propio y los avisos tienen límite, así que no se pueden hacer bromas desde afuera.</p></details>
+          <details><summary>¿Puedo cambiar los precios yo?</summary><p>Sí, desde el celular, cuando quieras. Se actualiza al instante en todas las mesas. También podés pausar platos que se terminaron.</p></details>
+          <details><summary>¿Y si se rompe o se pierde un QR?</summary><p>Te mandamos uno nuevo. Si hace falta, cambiamos el código de esa mesa y el viejo deja de funcionar.</p></details>
+          <details><summary>¿Necesito internet en el local?</summary><p>Los clientes usan los datos de su celular o tu Wi-Fi. El personal necesita conexión para recibir los avisos.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="wrap cta__in">
+        <h2>¿Lo probamos en tu local?</h2>
+        <p>Escribinos y vamos a mostrártelo funcionando, sin compromiso.</p>
+        <a class="btn btn--light js-wa" href="#" data-msg="Hola! Quiero que me muestren Mozo QR en mi local.">Escribinos por WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <a href="#" class="logo logo--sm"><span class="logo__mark" aria-hidden="true"></span>Mozo<span>QR</span></a>
+      <p>Hecho en Santa Rosa, La Pampa · © <span class="js-year"></span> Mozo QR</p>
+    </div>
+  </footer>
+
+  <a class="wa-float js-wa" href="#" data-msg="Hola! Quiero info sobre Mozo QR para mi local." aria-label="Escribinos por WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3 1 2.5c.1.2 1.7 2.6 4.1 3.6 1.5.7 2.1.7 2.9.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>
